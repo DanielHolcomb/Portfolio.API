@@ -23,7 +23,7 @@ namespace Portfolio.API.Controllers
 
         [HttpGet]
         [Route("LudumDare")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetLudumDareProjects()
         {
             var token = JwtTokenGenerator.GenerateToken(_config, new[] { new Claim("source", "portfolio") });
             var response = await HttpDynamo.GetRequestAsync(_httpClientFactory, "https://projectsludumdare20221120164815.azurewebsites.net/Projects/LudumDare/Games/dandala88", token);
