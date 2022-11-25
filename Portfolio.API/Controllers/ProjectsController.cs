@@ -29,5 +29,14 @@ namespace Portfolio.API.Controllers
             var response = await HttpDynamo.GetRequestAsync(_httpClientFactory, "https://projectsludumdare20221120164815.azurewebsites.net/Projects/LudumDare/Games/dandala88", token);
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("Steam")]
+        public async Task<IActionResult> GetSteamProjects()
+        {
+            var token = JwtTokenGenerator.GenerateToken(_config, new[] { new Claim("source", "portfolio") });
+            var response = await HttpDynamo.GetRequestAsync(_httpClientFactory, "https://projectssteam20221120215756.azurewebsites.net/Steam/Game?appId=1648160&appid=1940550", token);
+            return Ok(response);
+        }
     }
 }
