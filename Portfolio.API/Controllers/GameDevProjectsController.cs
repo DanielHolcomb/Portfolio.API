@@ -6,15 +6,15 @@ using System.Security.Claims;
 namespace Portfolio.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class ProjectsController : ControllerBase
+    [Route("Projects/GameDev")]
+    public class GameDevProjectsController : ControllerBase
     {
 
-        private readonly ILogger<ProjectsController> _logger;
+        private readonly ILogger<GameDevProjectsController> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _config;
 
-        public ProjectsController(ILogger<ProjectsController> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public GameDevProjectsController(ILogger<GameDevProjectsController> logger, IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
