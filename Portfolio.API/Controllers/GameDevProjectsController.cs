@@ -30,10 +30,10 @@ namespace Portfolio.API.Controllers
 
         [HttpGet]
         [Route("LudumDare")]
-        public async Task<IActionResult> GetLudumDareProjects()
+        public async Task<IActionResult> GetLudumDareProjects([FromQuery(Name ="refresh")] bool? refresh = false)
         {
             LudumDareData cachedResponse;
-            if (_memoryCache.TryGetValue(LudumCacheDareKey, out cachedResponse))
+            if (_memoryCache.TryGetValue(LudumCacheDareKey, out cachedResponse) && !refresh.GetValueOrDefault())
             {
                 return Ok(cachedResponse);
             }
@@ -48,10 +48,10 @@ namespace Portfolio.API.Controllers
 
         [HttpGet]
         [Route("Steam")]
-        public async Task<IActionResult> GetSteamProjects()
+        public async Task<IActionResult> GetSteamProjects([FromQuery(Name = "refresh")] bool? refresh = false)
         {
             List<SteamData> cachedResponse;
-            if (_memoryCache.TryGetValue(SteamCacheKey, out cachedResponse))
+            if (_memoryCache.TryGetValue(SteamCacheKey, out cachedResponse) && !refresh.GetValueOrDefault())
             {
                 return Ok(cachedResponse);
             }
