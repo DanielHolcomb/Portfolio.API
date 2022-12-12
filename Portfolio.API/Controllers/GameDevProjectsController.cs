@@ -40,7 +40,7 @@ namespace Portfolio.API.Controllers
             else
             {
                 var token = JwtTokenGenerator.GenerateToken(_config, new[] { new Claim("source", "portfolio") });
-                var response = await HttpDynamo.GetRequestAsync< LudumDareData>(_httpClientFactory, "https://projectsludumdare20221120164815.azurewebsites.net/Projects/LudumDare/Games/dandala88", token);
+                var response = await HttpDynamo.GetRequestAsync< LudumDareData>(_httpClientFactory, "https://projectsludumdare20221120164815.azurewebsites.net/Projects/LudumDare/Games/dandala88", token, null);
                 _memoryCache.Set(LudumCacheDareKey, response, DateTime.UtcNow + TimeSpan.FromHours(24));
                 return Ok(response);
             }
@@ -58,7 +58,7 @@ namespace Portfolio.API.Controllers
             else
             {
                 var token = JwtTokenGenerator.GenerateToken(_config, new[] { new Claim("source", "portfolio") });
-                var response = await HttpDynamo.GetRequestAsync<List<SteamData>>(_httpClientFactory, "https://projectssteam20221120215756.azurewebsites.net/Steam/Game?appId=1648160&appid=1940550", token);
+                var response = await HttpDynamo.GetRequestAsync<List<SteamData>>(_httpClientFactory, "https://projectssteam20221120215756.azurewebsites.net/Steam/Game?appId=1648160&appid=1940550", token, null);
                 _memoryCache.Set(SteamCacheKey, response, DateTime.UtcNow + TimeSpan.FromHours(24));
 
                 return Ok(response);
