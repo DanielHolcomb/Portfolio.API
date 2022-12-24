@@ -12,5 +12,8 @@ namespace Portfolio.API.Models
 
         [JsonPropertyName("description")]
         public string Description { get; set; }
+
+        [JsonPropertyName("Url")]
+        public string Url { get; set; }
     }
 }

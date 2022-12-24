@@ -56,10 +56,13 @@ namespace Portfolio.API.Controllers
                 gitHubRepoList = new List<GitHubRepo>();
                 foreach (var resource in resources)
                 {
-                    var repos = await HttpDynamo.GetRequestAsync<GitHubRepo>(_httpClientFactory, $"https://projectsgithub20221128090558.azurewebsites.net/repo{resource.RepoPath}", token, null);
+                    var repo = await HttpDynamo.GetRequestAsync<GitHubRepo>(_httpClientFactory, $"https://projectsgithub20221128090558.azurewebsites.net/repo{resource.RepoPath}", token, null);
 
-                    if (repos != null)
-                        gitHubRepoList.Add(repos);
+                    if (repo != null)
+                    {
+                        repo.Url = resource.RepoUri;
+                        gitHubRepoList.Add(repo);
+                    }
                 }
 
                 _memoryCache.Set(GitHubRepoListCachedKey, gitHubRepoList, DateTime.UtcNow + TimeSpan.FromHours(24));
